@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sammsz5204Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #000000;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes animate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 40px 0;
+        }
+
+        .cards .box {
+            position: relative;
+            width: 320px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 30px;
+            transition: 1s;
+        }
+
+        .cards .box::before {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 50%;
+            height: 100%;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 8px;
+            transform: skewX(15deg);
+            transition: 1s;
+        }
+
+        .cards .box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            border-radius: 8px;
+            transform: skewX(15deg);
+            transition: 0.5s;
+            filter: blur(30px);
+        }
+
+        .cards .box:hover:before,
+        .cards .box:hover:after {
+            transform: skewX(0deg);
+            left: 20px;
+            width: calc(100% - 90px);
+        }
+
+        .cards .box:nth-child(1):before,
+        .cards .box:nth-child(1):after {
+            background: linear-gradient(315deg, #ffedbb, #ff0058)
+        }
+
+        .cards .box:nth-child(2):before,
+        .cards .box:nth-child(2):after {
+            background: linear-gradient(315deg, #55c9ff, #ff0058)
+        }
+
+        .cards .box:nth-child(3):before,
+        .cards .box:nth-child(3):after {
+            background: linear-gradient(315deg, #4dff03, #ff0000)
+        }
+
+        .cards .box span {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .cards .box span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: 1s;
+            animation: animate 2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08)
+        }
+
+        .cards .box:hover span::before {
+            top: -60px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+
+        .cards .box span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: 0.5s;
+            animation: animate 2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            animation-delay: -1s;
+        }
+
+        .cards .box:hover span:after {
+            bottom: -50px;
+            right: 50px;
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+
+        @keyframes animate {
+            0%, 100% {
+                transform: translateY(10px);
+            }
+            50% {
+                transform: translate(-10px);
+            }
+        }
+
+        .cards .box .content {
+            position: relative;
+            left: 0;
+			transition: 1s;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 1;
+            transform: 5s;
+            color: #fff;
+        }
+
+        .cards .box:hover .content {
+            left: -25px;
+			transition: 1s;
+            padding: 60px 40px;
+        }
+
+        .cards .box .content h2 {
+            font-size: 2em;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .cards .box .content p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            line-height: 1.4em;
+        }
+
+        .cards .box .content a {
+            display: inline-block;
+            font-size: 1.1em;
+            color: #111;
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .cards .box .content a:hover {
+            background: #ffcf4d;
+            border: 1px solid rgba(255, 0, 88, 0.4);
+            box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+        }
+
+        /* Layout de duas colunas */
+        .two-column-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 40px;
+            gap: 80px;
+        }
+
+        .left-content {
+            flex: 1;
+            color: #fff;
+            max-width: 500px;
+        }
+
+        .left-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            background: linear-gradient(315deg, #ffbc00, #ff0058);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            line-height: 1.2em;
+        }
+
+        .left-content p {
+            font-size: 1.1em;
+            line-height: 1.8em;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .right-content {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            padding: 20px;
+        }
+
+        .container {
+            position: relative;
+            transform: skewY(-20deg);
+            animation: animateContainer 5s linear infinite;
+			margin-right: 170px;
+        }
+
+        @keyframes animateContainer {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .container .cube {
+            position: relative;
+            z-index: 2;
+        }
+
+        .container .cube:nth-child(2) {
+            z-index: 1;
+            translate: -60px -60px;
+        }
+
+        .container .cube:nth-child(3) {
+            z-index: 3;
+            translate: 60px 60px;
+        }
+
+        .container .cube div {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            translate: calc(-70px * var(--x)) calc(-60px * var(--y));
+        }
+
+        .container .cube div span {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #dcdcdc;
+            z-index: calc(1 * var(--i));
+            transition: 1.5s;
+        }
+
+        .container .cube div span:hover {
+            transition: 0s;
+            background: #ef4149;
+            filter: drop-shadow(0 0 30px #ef4149);
+        }
+
+        .container .cube div span:hover:before,
+        .container .cube div span:hover:after {
+            transition: 0s;
+            background: #ef4149;
+        }
+
+        .container .cube div span:before {
+            content: "";
+            position: absolute;
+            left: -40px;
+            width: 40px;
+            height: 100%;
+            background: #fff;
+            transform-origin: right;
+            transform: skewY(45deg);
+            transition: 1.5s;
+        }
+
+        .container .cube div span:after {
+            content: "";
+            position: absolute;
+            top: -40px;
+            left: 0px;
+            width: 100%;
+            height: 40px;
+            background: #f2f2f2f2;
+            transform-origin: bottom;
+            transform: skewX(45deg);
+            transition: 1.5s;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .two-column-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-content, .right-content {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        /* GIF do Perfil */
+        .GifDoPerfil {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .GifDoPerfil:hover {
+            transform: scale(1.1);
+        }
+
+        .GifDoPerfil img {
+            display: block;
+            border-radius: 50%;
+        }
+
+        ul {
+  position:absolute;
+  top:1500px;
+  left:50%;
+  transform:translate(-50%, -50%);
+  display:flex;
+  margin:0;
+  padding:0;
+}
+
+ul li {
+  list-style:none;
+  margin:0 5px;
+}
+
+ul li a .fa {
+  font-size: 40px;
+  color: #262626;
+  line-height:80px;
+  transition: .5s;
+  padding-right: 14px;
+}
+
+ul li a span {
+  padding:0;
+  margin:0;
+  position:absolute;
+  top: 30px;
+  color: #262626;
+  letter-spacing: 4px;
+  transition: .5s;
+}
+
+ul li a {
+  text-decoration: none;
+  display:absolute;
+  display:block;
+  width:210px;
+  height:80px;
+  background: #fff;
+  text-align:left;
+  padding-left: 20px;
+  transform: rotate(-30deg) skew(25deg) translate(0,0);
+  transition:.5s;
+  box-shadow: -20px 20px 10px rgba(0,0,0,.5);
+}
+ul li a:before {
+  content: '';
+  position: absolute;
+  top:10px;
+  left:-20px;
+  height:100%;
+  width:20px;
+  background: #b1b1b1;
+  transform: .5s;
+  transform: rotate(0deg) skewY(-45deg);
+}
+ul li a:after {
+  content: '';
+  position: absolute;
+  bottom:-20px;
+  left:-10px;
+  height:20px;
+  width:100%;
+  background: #b1b1b1;
+  transform: .5s;
+  transform: rotate(0deg) skewX(-45deg);
+}
+
+ul li a:hover {
+  transform: rotate(-30deg) skew(25deg) translate(20px,-15px);
+  box-shadow: -50px 50px 50px rgba(0,0,0,.5);
+}
+
+ul li:hover .fa {
+  color:#fff;
+}
+
+ul li:hover span {
+  color:#fff;
+}
+
+ul li:hover:nth-child(1) a{
+  background: #683b98;
+}
+ul li:hover:nth-child(1) a:before{
+  background: #3e2859;
+}
+ul li:hover:nth-child(1) a:after{
+  background: #7f4aad;
+}
+
+ul li:hover:nth-child(2) a{
+  background: #000000;
+}
+ul li:hover:nth-child(2) a:before{
+  background: #000000;
+}
+ul li:hover:nth-child(2) a:after{
+  background: #000000;
+}
+
+ul li:hover:nth-child(3) a{
+  background: #dd3939;
+}
+ul li:hover:nth-child(3) a:before{
+  background: #b32b2b;
+}
+ul li:hover:nth-child(3) a:after{
+  background: #e65a5a;
+}
+
+ul li:hover:nth-child(4) a{
+  background: #e4405f;
+}
+ul li:hover:nth-child(4) a:before{
+  background: #d81c3f;
+}
+ul li:hover:nth-child(4) a:after{
+  background: #e46880;
+}
+
+    </style>
+</head>
+<body>
+
+	<div class="GifDoPerfil">
+        <img src="Sammsz5204.gif" width="150" height="150">
+    </div>
+
+
+
+<div class="cards">
+  <div class="box">
+    <span></span>
+    <div class="content">
+      <h2>Oque isso era pra ser?</h2>
+      <p>Certo. essa página foi feita por mim (Sam) a fim de algum ano eu pensar "Uau me lembrei do meu começo na programação" e talvez, ficar feliz por isso. Também uma alternativa ao guns.lol</p>
+    </div>
+  </div>
+  <div class="box">
+    <span></span>
+    <div class="content">
+      <h2>Então?</h2>
+      <p>Como sou estranho pra krl e nunca penso em sequer sair de casa pra fazer qualquer coisa pra ter algo lembrável, fiz essa página com coisas legais a fim de algum dia pensar nisso. Inclusive deve(DEVEKKK) ter algumas coisas legais que eu fiz</p>
+    </div>
+  </div>
+  <div class="box">
+    <span></span>
+    <div class="content">
+      <h2>Recados para mim qualquer ano.( ˶˘ ³˘)</h2>
+      <p>Aprenda lua (pelomenos tente) Termine Inglês(O suficiente pra morar em algum lugar que fale essa língua) E continue Japônes. E por último, mas não menos importante. Não se mate ;D</p>
+    </div>
+  </div>
+</div>
+
+<!-- Seção com layout de duas colunas -->
+<div class="two-column-section">
+    <!-- Conteúdo da esquerda (textos) -->
+    <div class="left-content">
+        <h1>Cu-bo</h1>
+        <p>Este é meu ultimo projeto de 2025 fiz isso 11 de dezembro. O dia em que estou escrevendo isso hahahaha. ヽ(^。^)ノ</p>
+        <p>Caso queira o script completo dele, vai querendo porque além de antisocial pra krl e estou preguiçoso demais suficiente pra não colocar um link pro pastebin `\_(ツ)_/`.</p>
+        <p>Beeem mais abaixo, vou deixar um link de todas as minhas redes. As que eu lembrar, óbvio.(づ｡◕‿‿◕｡)づ</p>
+    </div>
+
+    <!-- Conteúdo da direita (cubo e outros elementos) -->
+    <div class="right-content">
+        <div class="container">
+            <div class="cube">
+                <div style="--x:-1; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+                <div style="--x:0; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+                <div style="--x:1; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+            </div>
+            <div class="cube">
+                <div style="--x:-1; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+                <div style="--x:0; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+                <div style="--x:1; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+            </div>
+            <div class="cube">
+                <div style="--x:-1; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+                <div style="--x:0; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+                <div style="--x:1; --y:0;">
+                    <span style="--i:3;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:1;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Exemplo 3: Seção apenas com texto à esquerda -->
+<div style="max-width: 1400px; margin: 60px auto; padding: 0 40px;">
+    <div class="left-content">
+        <h1>Redes abaixo.</h1>
+        <p>Você vai encontrar algumas redes abaixo, tipo yt, github principal, e entre outros. Eu acho ⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹ ࣪ ˖ (Inclusive você está vendo isso num pages do github!)</p>
+    </div>
+</div>
+
+
+
+
+<ul>
+  <li>
+    <a href="semdiscord.html">
+      <i class="fa fa-facebook" aria-hidden="true"></i>
+      <span> - Discord</span>
+    </a>
+  </li>
+  <li>
+
+    <a href="https://github.com/Sammsz5204">
+      <i class="fa fa-Discord" aria-hidden="true"></i>
+      <span> - Github</span>
+    </a>
+  </li>
+  <li>
+
+    <a href="https://www.youtube.com/@sam5204p">
+      <i class="fa fa-google-plus" aria-hidden="true"></i>
+      <span> - Youtube</span>
+    </a>
+  </li>
+  <li>
+
+    <a href="https://instagram.com/sammsz5204">
+      <i class="fa fa-instagram" aria-hidden="true"></i>
+      <span> - Instagram</span>
+    </a>
+  </li>
+
+</body>
+</html>
