@@ -7,15 +7,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
 
-  .snowflake {
-    position: absolute;
-    color: white;
-    user-select: none;
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity 2s ease;
-  }
-
         body {
             margin: 0;
             padding: 0;
@@ -522,7 +513,7 @@ ul li:hover:nth-child(4) a:after{
 <body>
 
 	<div class="GifDoPerfil">
-        <img src="idk.jpeg" width="150" height="150">
+        <img src="mikucomflorminecraft2x.png" width="150" height="150">
     </div>
 
 
@@ -532,7 +523,7 @@ ul li:hover:nth-child(4) a:after{
     <span></span>
     <div class="content">
       <h2>Oque isso era pra ser?</h2>
-      <p>Certo. essa página foi feita por mim (Sam) a fim de algum ano eu pensar "Uau me lembrei do meu começo na programação" e talvez, ficar feliz por isso. Também uma alternativa ao guns.lol</p>
+      <p>Certo. essa página foi feita por mim (Sam) a fim de algum ano eu pensar "Uau, já fui útil:D" Também uma alternativa ao guns.lol</p>
     </div>
   </div>
   <div class="box">
@@ -551,17 +542,16 @@ ul li:hover:nth-child(4) a:after{
   </div>
 </div>
 
-<!-- Seção com layout de duas colunas -->
 <div class="two-column-section">
-    <!-- Conteúdo da esquerda (textos) -->
+    
     <div class="left-content">
         <h1>CUbo</h1>
         <p>Este é meu ultimo projeto de 2025 fiz isso 11 de dezembro. O dia em que estou escrevendo isso hahahaha. ヽ(^。^)ノ</p>
-        <p>Caso queira o script completo dele, vai ficar querendo porque além de antisocial pra krl e estou preguiçoso demais suficiente pra não colocar um link pro pastebin `\_(ツ)_/`.</p>
+        <p>Caso queira o script completo dele, vai ficar querendo porque além de antisocial pra krl e estou preguiçoso demais, o suficiente pra não colocar um link pro pastebin `\_(ツ)_/` E pensa num bagulho gostoso esse cubo papo reto.</p>
         <p>Beeem mais abaixo, vou deixar um link de todas as minhas redes. As que eu lembrar, óbvio.(づ｡◕‿‿◕｡)づ</p>
     </div>
 
-    <!-- Conteúdo da direita (cubo e outros elementos) -->
+   
     <div class="right-content">
         <div class="container">
             <div class="cube">
@@ -620,15 +610,13 @@ ul li:hover:nth-child(4) a:after{
 </div>
 
 
-<!-- Exemplo 3: Seção apenas com texto à esquerda -->
+
 <div style="max-width: 1400px; margin: 60px auto; padding: 0 40px;">
     <div class="left-content">
         <h1>Redes abaixo.</h1>
         <p>Você vai encontrar algumas redes abaixo, tipo yt, github principal, e entre outros. Eu acho ⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹ ࣪ ˖ (Inclusive você está vendo isso num pages do github!)</p>
     </div>
 </div>
-
-
 
 
 <ul>
@@ -659,66 +647,6 @@ ul li:hover:nth-child(4) a:after{
       <span> - Instagram</span>
     </a>
   </li>
-
-<script>
-  const snowChars = ['❄', '❅', '❆'];
-  const pile = {};              // tracks accumulated height per column
-  const columnWidth = 20;       // horizontal resolution of pile
-  const pileStep = 6;           // how much each flake adds
-
-  function createSnowflake() {
-    const flake = document.createElement('div');
-    flake.className = 'snowflake';
-    flake.textContent = snowChars[Math.floor(Math.random() * snowChars.length)];
-
-    const size = Math.random() * 8 + 10;
-    flake.style.fontSize = size + 'px';
-
-    const x = Math.floor(Math.random() * window.innerWidth);
-    const column = Math.floor(x / columnWidth);
-
-    flake.style.left = x + 'px';
-
-    // Start from the middle of the page
-    const pageHeight = document.documentElement.scrollHeight;
-    const startY = pageHeight / 8;
-    flake.style.top = startY + 'px';
-
-    document.body.appendChild(flake);
-
-    const fallDuration = Math.random() * 4 + 4;
-    let startTime = null;
-
-    function fall(timestamp) {
-      if (!startTime) startTime = timestamp;
-      const progress = (timestamp - startTime) / (fallDuration * 1000);
-
-      const pileHeight = pile[column] || 0;
-      const targetY = pageHeight - pileHeight - size;
-
-      if (progress < 1) {
-        flake.style.top = startY + (targetY - startY) * progress + 'px';
-        requestAnimationFrame(fall);
-      } else {
-        // Land and increase pile
-        flake.style.top = targetY + 'px';
-        pile[column] = pileHeight + pileStep;
-
-        // Fade and remove after a few seconds
-        setTimeout(() => {
-          flake.style.opacity = 0;
-          setTimeout(() => flake.remove(), 10000);
-        }, 4000);
-      }
-    }
-
-    requestAnimationFrame(fall);
-  }
-
-  // Continuous snowfall
-  setInterval(createSnowflake, 50);
-
-</script>
 
 </body>
 </html>
